@@ -16,13 +16,13 @@
       <%= yield %>
     </div>
 
-    <aside>
-      <h2>Recent Articles</h2>
-      <ol>
-        <% blog.articles[0...10].each do |article| %>
-          <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
+    <% if current_article %>
+      <div id="similars">
+        <h4>Similar articles</h4>
+        <% current_article.similar_articles.each do |similar| %>
+          <%= similar.to_json %>
         <% end %>
-      </ol>
-    </aside>
+      </div>
+    <% end %>
   </body>
 </html>
